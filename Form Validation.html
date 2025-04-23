@@ -3,25 +3,105 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Styled Form</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Verdana, sans-serif;
+        background: linear-gradient(to right, white, rgb(175, 197, 231));
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      form {
+        background-color: ;
+        padding: 2rem 3rem;
+        border-radius: 1rem;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 400px;
+      }
+
+      h2 {
+        text-align: center;
+        margin-bottom: 1.5rem;
+        color: #1e3a8a;
+      }
+
+      label {
+        font-weight: 600;
+        display: block;
+        margin-bottom: 0.5rem;
+        color: black;
+      }
+
+      input[type="text"],
+      input[type="number"] {
+        width: 100%;
+        padding: 0.6rem;
+        border: 1px solid rgb(184, 218, 240);
+        border-radius: 0.5rem;
+        margin-bottom: 1rem;
+        transition: border 0.3s ease;
+      }
+
+      input[type="text"]:focus,
+      input[type="number"]:focus {
+        border-color: blue;
+        outline: none;
+      }
+
+      input[type="submit"] {
+        background-color: rgb(79, 79, 230);
+        color: white;
+        border: none;
+        padding: 0.75rem;
+        width: 100%;
+        font-weight: bold;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: 0.3s ease;
+      }
+
+      input[type="submit"]:hover {
+        background-color: blue;
+      }
+
+      #message {
+        margin-top: 1rem;
+        text-align: center;
+        font-weight: 500;
+      }
+    </style>
   </head>
   <body>
-    <form name="myForm" onsubmit="validateForm()">
-      Name: <input type="text" name="fname" /><br /><br />
-      Age: <input name="id1" type="number" min="18" /><br /><br />
+    <form name="myForm" onsubmit="return validateForm()">
+      <h2>Login Form</h2>
+      <label for="fname">Name:</label>
+      <input type="text" name="fname" id="fname" />
+
+      <label for="id1">Age:</label>
+      <input name="id1" id="id1" type="number" min="18" />
+
       <input type="submit" value="Submit" />
       <p id="message"></p>
     </form>
+
     <script>
       function validateForm() {
         var x = document.forms["myForm"]["fname"].value;
         var y = document.forms["myForm"]["id1"].value;
-        if (x == "" || y == "") {
-          alert("Name/Age Cannot be Empty");
+        if (x === "" || y === "") {
+          message.textContent = "Name and Age cannot be empty.";
+          message.style.color = "red";
           return false;
-        } else {
-          alert("Successfully Logged In!");
         }
+
+        message.textContent = "Successfully Logged In!";
+        message.style.color = "green";
+        return false;
       }
     </script>
   </body>
